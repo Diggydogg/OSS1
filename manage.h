@@ -43,4 +43,4 @@ void listproduct(product *s[], int count);
 int selectproduct();
 void saveProduct(product* s[],int count);
 int loadProduct(product *s[]);
-
+int find_Product(product *s[],int count);

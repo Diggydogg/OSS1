@@ -94,6 +94,7 @@ int selectproduct(){
     printf("3. 수정\n");
     printf("4. 삭제\n");
     printf("5. 저장\n");
+    printf("6. 찾기\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &product);
@@ -114,9 +115,14 @@ int loadProduct(product *s[]){
 	int i= 0;
 	FILE *fp;
 	fp = fopen("product.txt","rt");
+	if(fp==NULL) {
+        printf("load fail, no \"menu.txt\" in current directory\n" );
+        return 0;
+    }
 	for(;i<20;i++){
+		s[i]=(product*)malloc(sizeof(product)); 	
 		fscanf(fp,"%s",s[i]->name);
-		if(feof(fp)) break;
+		if(feof(fp)){free(s[i]); break;}
 		fscanf(fp, "%d",&s[i]->price);
 		fscanf(fp,"%f",&s[i]->weight);
 		fscanf(fp,"%f",&s[i]->rating);
@@ -125,6 +131,21 @@ int loadProduct(product *s[]){
 	fclose(fp);
 	printf("loaded!\n");
 	return i;
+}
+int find_Product(product *s[],int count){
+    char name[20];
+    printf("Enter a name of product you wish to find : ");
+   
+    scanf("%s",name);
+    //printf("\nno   price  type   name \n");
+    //printf("=============================\n");
+    for(int i =0;i<count;i++){
+        if(strstr(s[i]->name,name)!=NULL&&s[i]->price>0){
+            printf("%2d",i+1);
+            readProduct(*s[i]);
+        }
+    }
+    return 1;
 }
 /*
 int main(){

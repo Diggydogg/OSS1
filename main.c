@@ -13,7 +13,7 @@ int main(){
     
     product *sp[20];
     int index =0;
-    //index = loadProduct(sp);   
+    index = loadProduct(sp);   
     while(1){
         menu = selectproduct();
         if(menu==0) break;
@@ -60,6 +60,9 @@ int main(){
 	else if(menu==5){
 		saveProduct(sp,index);
 	}
+	else if(menu==6){
+            find_Product(sp,index);
+        }
     }
 
 
@@ -68,6 +71,11 @@ int main(){
     if(isdel ==1){
         printf("==> deleted");
     }*/
+    for(int i =0;i<20;i++){
+        if(sp[i]!=NULL){
+            free(sp[i]);
+        }
+    }
     printf("exit");
     return 0;
 }
