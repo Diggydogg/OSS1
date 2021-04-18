@@ -71,11 +71,12 @@ int main(){
     if(isdel ==1){
         printf("==> deleted");
     }*/
+    /*
     for(int i =0;i<20;i++){
         if(sp[i]!=NULL){
             free(sp[i]);
         }
-    }
+    }*/
     printf("exit");
     return 0;
 }
